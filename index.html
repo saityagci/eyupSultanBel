@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EyüpSultan Belediyesi</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .top-bar {
+      background-color: #a32024;
+      color: white;
+      padding: 10px 20px;
+      text-align: right;
+    }
+
+    .header {
+      background-color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .header img {
+      max-height: 100px;
+    }
+
+    .nav {
+      background-color: #4d4030;
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      background-color: #c82026;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: white;
+    }
+
+    .grid {
+      flex: 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .grid div {
+      background-color: #eeeeee;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 3px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .mayor-panel {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .mayor-panel img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+
+    /* Chatbot styles */
+    #chatbotWrapper {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 360px; /* smaller width */
+      height: 520px; /* smaller height */
+      display: none;
+      z-index: 9999;
+      animation: fadeIn 0.4s ease;
+    }
+
+    #chatbotIframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    }
+
+    #chatToggleBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #004aad;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 9999;
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  📞 444 30 00 | Talep ve Öneri | Bilgi Güvenliği Politikası
+</div>
+
+<div class="header">
+  <img src="logo.png" alt="Eyüpultan Belediyesi Logo" />
+</div>
+
+<div class="nav">
+  <a href="#">KURUMSAL</a>
+  <a href="#">EYÜPSULTAN'DA YAŞAM</a>
+  <a href="#">GÜNCEL</a>
+  <a href="#">HİZMETLER</a>
+  <a href="#">E-BELEDİYE</a>
+  <a href="#">İLETİŞİM</a>
+</div>
+
+<div class="hero">
+  <h1>EYÜPSULTAN KARADOLAP MAHALLESİNE Kent Lokantası Açıldı!</h1>
+  <p>Vatandaşlarımızın kaliteli, sağlıklı ve uygun fiyatlı yemeklere ulaşabileceği Kent Lokantası hizmetinizde!</p>
+  <p><strong>Karadolap Mahallesi Atatürk Bulvarı No:13<br>White Hill Alışveriş Merkezi</strong></p>
+</div>
+
+<div class="main-content">
+  <div class="grid">
+    <div>ÇÖZÜM MERKEZİ</div>
+    <div>E-KENT BİLGİ SİSTEMİ</div>
+    <div>E-İMAR</div>
+    <div>ASKIDAKİ PLANLAR</div>
+    <div>E-BELEDİYE</div>
+    <div>İLAN-REKLAM BEYANI</div>
+    <div>ÇTV BEYANI</div>
+    <div>EMLAK BEYAN BİLDİRİMİ FORMU</div>
+    <div>BORÇ ÖDEME</div>
+    <div>EKSPERTİZ İŞLEMLERİ</div>
+    <div>BİLGİ EDİNME FORMU</div>
+    <div>ONLINE BAŞVURU</div>
+  </div>
+  <div class="mayor-panel">
+    <img src="mayor-panel.png" alt="Belediye Başkanı">
+  </div>
+</div>
+
+<div class="footer">
+  © 2025 Eyüpultan Belediyesi
+</div>
+
+<!-- Chatbot toggle button -->
+<button id="chatToggleBtn" onclick="toggleChat()">Sohbet</button>
+
+<!-- Chatbot iframe container -->
+<div id="chatbotWrapper">
+  <iframe id="chatbotIframe" src="chatbot2.html"></iframe>
+</div>
+
+<!-- Welcome sound -->
+<audio id="welcomeSound" src="welcome.mp3" preload="auto"></audio>
+
+<!-- Script -->
+<script>
+  function toggleChat() {
+    document.getElementById('chatbotWrapper').style.display = 'block';
+    document.getElementById('chatToggleBtn').style.display = 'none';
+  }
+
+  function closeChat() {
+    document.getElementById('chatbotWrapper').style.display = 'none';
+    document.getElementById('chatToggleBtn').style.display = 'block';
+  }
+
+  window.addEventListener("message", function (event) {
+    if (event.data === "closeChatbot") {
+      closeChat();
+    }
+  });
+
+  window.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+      toggleChat();
+      const sound = document.getElementById("welcomeSound");
+      if (sound) sound.play();
+    }, 2000);
+  });
+</script>
+
+</body>
+</html>
